@@ -128,16 +128,6 @@
                 v-if="charging"
                 class="inline-grid grid-cols-2 gap-x-4 gap-y-2"
               >
-                <template v-if="charging">
-                  <div opacity="50">正在充电</div>
-                  <div>{{ charging }}</div>
-                  <div>充电时间</div>
-                  <div>{{ chargingTime }}</div>
-                  <div opacity="50">放电时间</div>
-                  <div>{{ dischargingTime }}</div>
-                  <div opacity="50">Limit</div>
-                  <div>{{ level }}</div>
-                </template>
               </div>
               <div v-else>
                 Your browser does not support performance memory API
