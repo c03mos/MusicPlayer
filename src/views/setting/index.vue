@@ -82,58 +82,6 @@
               </div>
             </div>
           </div>
-          <!-- 用户内存配置 -->
-          <div
-            class="rounded-lg border bg-card text-card-foreground shadow-sm"
-            data-v0-t="card"
-          >
-            <div class="flex flex-col space-y-1.5 p-6">
-              <h3
-                class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight"
-              >
-                使用内存
-              </h3>
-              <p class="text-sm text-muted-foreground">使用内存显示</p>
-              <div
-                v-if="isSupported && memory"
-                class="inline-grid grid-cols-2 gap-x-4 gap-y-2"
-              >
-                <template v-if="memory">
-                  <div opacity="50">Used</div>
-                  <div>{{ size(memory.usedJSHeapSize) }}</div>
-                  <div opacity="50">Allocated</div>
-                  <div>{{ size(memory.totalJSHeapSize) }}</div>
-                  <div opacity="50">Limit</div>
-                  <div>{{ size(memory.jsHeapSizeLimit) }}</div>
-                </template>
-              </div>
-              <div v-else>
-                Your browser does not support performance memory API
-              </div>
-            </div>
-          </div>
-          <!-- 电池 -->
-          <div
-            class="rounded-lg border bg-card text-card-foreground shadow-sm"
-            data-v0-t="card"
-          >
-            <div class="flex flex-col space-y-1.5 p-6">
-              <h3
-                class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight"
-              >
-                电池
-              </h3>
-              <p class="text-sm text-muted-foreground">电池</p>
-              <div
-                v-if="charging"
-                class="inline-grid grid-cols-2 gap-x-4 gap-y-2"
-              >
-              </div>
-              <div v-else>
-                Your browser does not support performance memory API
-              </div>
-            </div>
-          </div>
         </div>
       </main>
     </div>

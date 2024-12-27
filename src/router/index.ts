@@ -8,27 +8,12 @@ const router = createRouter({
     {
       path: '/',
       component: DefaultLayout,
-      redirect: '/home',
+      redirect: '/discover',
       children: [
-        {
-          path: '/home',
-          name: 'home',
-          component: () => import('@/views/index.vue'),
-        },
-        {
-          path: '/animation',
-          name: 'animation',
-          component: () => import('@/views/discover/animation/index.vue'),
-        },
         {
           path: '/chat',
           name: 'chat',
           component: () => import('@/views/chatGPT/index.vue'),
-        },
-        {
-          path: '/animation/play',
-          name: 'aniplay',
-          component: () => import('@/views/discover/animation/play.vue'),
         },
         {
           path: '/discover',
@@ -50,11 +35,6 @@ const router = createRouter({
           path: '/search',
           name: 'search',
           component: () => import('@/views/search/index.vue'),
-        },
-        {
-          path: '/utils',
-          name: 'utils',
-          component: () => import('@/views/utils/index.vue'),
         },
         {
           path: '/mv',

@@ -261,7 +261,7 @@
         >
           <img
             class="aspect-square h-full w-full rounded-full"
-            src="@/assets/gthub-avatar.png"
+            src="@/assets/gpt.png"
           />
         </span>
       </header>
