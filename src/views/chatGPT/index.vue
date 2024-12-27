@@ -259,10 +259,6 @@
         <span
           class="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full"
         >
-          <img
-            class="aspect-square h-full w-full rounded-full"
-            src="@/assets/gpt.png"
-          />
         </span>
       </header>
       <div class="relative overflow-hidden flex-1 p-4">
@@ -292,7 +288,7 @@
                   >
                     <img
                       class="aspect-square h-full w-full rounded-full"
-                      src="@/assets/gthub-avatar.png"
+                      src="@/assets/gpt.png"
                     />
                   </span>
 
@@ -307,7 +303,7 @@
                   >
                     <img
                       class="aspect-square h-full w-full rounded-full"
-                      src="@/assets/gthub-avatar.png"
+                      src="@/assets/gpt.png"
                     />
                   </span>
                 </div>

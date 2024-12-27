@@ -56,10 +56,10 @@ const handleKeyDown = (event: KeyboardEvent): void => {
   >
     <div class="flex flex-col items-center p-4 gap-2">
       <span class="relative flex h-24 w-24 shrink-0">
-<!--        <img-->
-<!--          class="aspect-square h-full w-full rounded-full"-->
-<!--          src="@/assets/gthub-avatar.png"-->
-<!--        />-->
+        <img
+          class="aspect-square h-full w-full rounded-full"
+          src="@/assets/music.png"
+        />
       </span>
         <div
           class="flex items-center bg-black text-white gap-1 text-xs p-1 rounded-lg"
