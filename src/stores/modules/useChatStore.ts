@@ -8,7 +8,7 @@ import piniaPersistConfig from '@/config/piniaPersist'
 export const useChatStore = defineStore({
   id: 'useChatStore',
   state: () => ({
-    apiBaseUrl: 'https://api.chatanywhere.tech',
+    apiBaseUrl: 'https://api.4chat.me',
     apiToken: '',
     conversations: [
       {
@@ -16,7 +16,7 @@ export const useChatStore = defineStore({
         messages: [
           {
             role: 'system',
-            content: 'You are a helpful assistant.',
+            content: '有什么我能帮助您的吗？',
           },
         ],
       },

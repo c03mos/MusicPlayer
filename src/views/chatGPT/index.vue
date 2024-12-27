@@ -343,41 +343,9 @@
             >
               <icon-iconoir:send-diagonal />
             </button>
-            <button
-              @click="openSettingsDialog"
-              class="ml-2 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white dark:bg-purple-700 dark:hover:bg-purple-800"
-            >
-              <icon-tabler:settings />
-            </button>
           </div>
         </div>
       </div>
     </div>
-    <!-- 设置对话框 -->
-    <el-dialog
-      title="API 设置"
-      v-model="dialogVisible"
-      class="dark:bg-gray-800 dark:text-gray-200"
-    >
-      <el-input
-        v-model="apiBaseUrl"
-        class="mb-4"
-        placeholder="输入 API 基础地址"
-      />
-      <el-input
-        v-model="apiToken"
-        placeholder="输入 API Token"
-        type="textarea"
-        class="mb-4"
-        :rows="2"
-      />
-      <span class="text-gray-600 text-sm"
-        >请确保正确输入 API 地址和 Token。</span
-      >
-      <template #footer>
-        <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="handleSettingsSave">保存</el-button>
-      </template>
-    </el-dialog>
   </div>
 </template>
