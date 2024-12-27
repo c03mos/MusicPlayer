@@ -28,17 +28,11 @@ export const MenuData = [
     title: '实验性测试',
     children: [
       {
-        title: '数据大屏',
-        icon: 'material-symbols:screen-search-desktop-outline-rounded',
-        router: '/dataScreen',
-      },
-      {
         title: 'ChatGPT',
         icon: 'mdi:robot-angry-outline',
         router: '/chat',
       },
       { title: '工具', icon: 'tdesign:film', router: '/utils' },
-      { title: '测试', icon: 'ph:test-tube-duotone', router: '/test' },
     ],
   },
   {

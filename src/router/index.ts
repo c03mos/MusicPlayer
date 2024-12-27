@@ -71,23 +71,12 @@ const router = createRouter({
           name: 'setting',
           component: () => import('@/views/setting/index.vue'),
         },
-
-        {
-          path: '/test',
-          name: 'test',
-          component: () => import('@/views/test/index.vue'),
-        },
         {
           path: '/theme',
           name: 'theme',
           component: () => import('@/views/setting/theme/index.vue'),
         },
       ],
-    },
-    {
-      path: '/dataScreen',
-      name: 'dataScreen',
-      component: () => import('@/views/dataScreen/index.vue'),
     },
   ],
 })
