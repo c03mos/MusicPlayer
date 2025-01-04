@@ -54,15 +54,6 @@
             </template>
           </el-input>
         </div>
-        <!-- 关于我 -->
-        <div class="about-me flex gap-2 app-region-no-drag">
-          <a href="https://github.com/XiangZi7/KM-Music-Player" target="_blank">
-            <div
-              class="flex items-center bg-black text-white gap-1 text-xs p-1 rounded-lg"
-            >
-            </div>
-          </a>
-        </div>
       </div>
     </div>
     <div class="flex items-center gap-2">

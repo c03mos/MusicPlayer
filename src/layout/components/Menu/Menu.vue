@@ -58,21 +58,12 @@ const handleKeyDown = (event: KeyboardEvent): void => {
       <span class="relative flex h-24 w-24 shrink-0">
         <img
           class="aspect-square h-full w-full rounded-full"
-          src="@/assets/gthub-avatar.png"
+          src="@/assets/music.png"
         />
       </span>
-      <a href="https://github.com/XiangZi7" target="_blank">
-        <div
-          class="flex items-center bg-black text-white gap-1 text-xs p-1 rounded-lg"
-        >
-          <img
-            alt="GitHub User's stars"
-            src="https://img.shields.io/github/stars/XiangZi7?style=flat&logo=github&label=XiangZi&labelColor=%23000&color=%23000"
-          />
-        </div>
-      </a>
+
       <h2 class="text-lg font-semibold text-gray-900 dark:text-white">
-        Kuriyama Mirai Player
+        Music Player
       </h2>
     </div>
     <nav

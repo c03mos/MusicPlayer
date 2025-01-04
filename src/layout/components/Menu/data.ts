@@ -16,16 +16,6 @@ export const MenuData = [
     ],
   },
   {
-    title: '工具',
-    children: [
-      {
-        title: 'ChatGPT',
-        icon: 'mdi:robot-angry-outline',
-        router: '/chat',
-      },
-    ],
-  },
-  {
     title: '设置',
     children: [
       { title: '设置', icon: 'hugeicons:settings-03', router: '/setting' },
