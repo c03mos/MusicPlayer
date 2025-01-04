@@ -1,81 +1,90 @@
 <script setup lang="ts">
-  import { playlistDetail, commentPlaylist } from '@/api'
-  import { PlaylistDetailResponse } from '@/api/interface'
-  import { Track } from '@/stores/interface.ts'
-  import { Comment } from '@/api/interface'
+import { playlistDetail, commentPlaylist } from '@/api'
+import { PlaylistDetailResponse } from '@/api/interface'
+import { Track } from '@/stores/interface.ts'
+import { Comment } from '@/api/interface'
+import { MusicPlayer } from '@/hooks/interface'
 
-  const route = useRoute()
-  const audioStore = useAudioStore()
-  const state = reactive({
-    playlistData: {
-      playlist: {
-        tracks: [],
-      },
-    } as unknown as PlaylistDetailResponse,
-    commentListData: [] as Comment[],
-    drawer: false,
+const route = useRoute()
+const audioStore = useAudioStore()
+const { play, audio } = inject('MusicPlayer') as MusicPlayer
+const state = reactive({
+  playlistData: {
+    playlist: {
+      tracks: [],
+    },
+  } as unknown as PlaylistDetailResponse,
+  commentListData: [] as Comment[],
+  drawer: false,
+})
+const { playlistData, commentListData, drawer } = toRefs(state)
+
+onMounted(() => {
+  playlistDetail(route.query.id as string).then((res) => {
+    state.playlistData = res
   })
-  const { playlistData, commentListData, drawer } = toRefs(state)
+})
 
-  onMounted(() => {
-    playlistDetail(route.query.id as string).then((res) => {
-      state.playlistData = res
-    })
-  })
+function formatNumber(num: number): string {
+  if (num < 10000) {
+    return num.toString() // 直接返回小于10000的数字
+  } else if (num < 100000) {
+    const formatted = (num / 10000).toFixed(1)
+    return formatted.endsWith('.0')
+      ? formatted.slice(0, -2) + '万'
+      : formatted + '万' // 处理 1.0万 和 1.5万
+  } else {
+    return (num / 10000).toFixed(0) + '万' // 对于大于或等于100000的数字，直接显示为整数的万
+  }
+}
 
-  function formatNumber(num: number): string {
-    if (num < 10000) {
-      return num.toString() // 直接返回小于10000的数字
-    } else if (num < 100000) {
-      const formatted = (num / 10000).toFixed(1)
-      return formatted.endsWith('.0')
-        ? formatted.slice(0, -2) + '万'
-        : formatted + '万' // 处理 1.0万 和 1.5万
-    } else {
-      return (num / 10000).toFixed(0) + '万' // 对于大于或等于100000的数字，直接显示为整数的万
+function formattedDate(str: string) {
+  return new Date(str).toLocaleString()
+}
+
+const getCommentPlaylist = (pages: number = 1) => {
+  commentPlaylist({ offset: pages, id: route.query.id as string }).then(
+    (res) => {
+      state.commentListData = state.commentListData.concat(res.comments)
     }
-  }
+  )
+}
 
-  function formattedDate(str: string) {
-    return new Date(str).toLocaleString()
-  }
+const showDrawer = () => {
+  state.drawer = true
+  if (state.commentListData.length > 0) return
+  commentPlaylist({ offset: 1, id: route.query.id as string }).then((res) => {
+    state.commentListData = res.comments
+  })
+}
 
-  const getCommentPlaylist = (pages: number = 1) => {
-    commentPlaylist({ offset: pages, id: route.query.id as string }).then(
-      (res) => {
-        state.commentListData = state.commentListData.concat(res.comments)
-      }
-    )
-  }
-
-  const showDrawer = () => {
-    state.drawer = true
-    if (state.commentListData.length > 0) return
-    commentPlaylist({ offset: 1, id: route.query.id as string }).then((res) => {
-      state.commentListData = res.comments
-    })
-  }
-
-  const playMusic = () => {
-    let newArr = playlistData.value.playlist.tracks.map((row) => {
-      return {
-        id: row.id,
-        title: row.name,
-        singer: row.ar.map((ar: any) => ar.name).join(' / '),
-        album: row.al.name,
-        cover: row.al.picUrl,
-        time: row.dt,
-        source: '',
-        mv: row.mv as number,
-      }
-    })
-    audioStore.addTrack(newArr as unknown as Track[])
-  }
+const playMusic = () => {
+  let newArr = playlistData.value.playlist.tracks.map((row) => {
+    return {
+      id: row.id,
+      title: row.name,
+      singer: row.ar.map((ar: any) => ar.name).join(' / '),
+      album: row.al.name,
+      cover: row.al.picUrl,
+      time: row.dt,
+      source: '',
+      mv: row.mv as number,
+    }
+  })
+  audioStore.clearAllSong()
+  audioStore.addTrack(newArr as unknown as Track[])
+  audioStore.setCurrentSong(0)
+  audio.src = '' // 更新audio元素的资源地址
+  play()
+}
 </script>
 <template>
   <div class="container p-6 overflow-hidden h-full flex-1">
     <div class="flex gap-6 h-full">
-      <div class="flex-[20%] max-w-[20%] space-y-4 relative" v-if="playlistData.playlist.coverImgUrl">
+      <div
+        class="flex-[20%] max-w-[20%] space-y-4 relative"
+        v-if="playlistData.playlist.coverImgUrl"
+      >
         <img
           alt="Album cover"
           class="w-full aspect-square object-cover rounded-lg shadow-xl"
@@ -114,7 +123,7 @@
           <span
             class="bg-[var(--el-color-primary)] text-white dark:bg-gray-700 px-2 py-1 rounded-md text-sm"
             v-for="item in playlistData.playlist.tags"
-            >{{ item }}</span
+          >{{ item }}</span
           >
         </div>
         <p

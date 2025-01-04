@@ -1,3 +1,4 @@
+
 <script setup lang="ts">
 import { urlV1 } from '@/api'
 import { MusicPlayer } from '@/hooks/interface'
@@ -105,7 +106,7 @@ const formatMillisecondsToTimes = (time: number) => {
               class="line-clamp-1 cursor-pointer"
               @click="router.push(`/search?kw=${row.name}`)"
               :title="row.name"
-              >{{ row.name }}</span
+            >{{ row.name }}</span
             >
           </div>
         </template>
