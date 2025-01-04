@@ -11,11 +11,6 @@ const router = createRouter({
       redirect: '/discover',
       children: [
         {
-          path: '/chat',
-          name: 'chat',
-          component: () => import('@/views/chatGPT/index.vue'),
-        },
-        {
           path: '/discover',
           name: 'discover',
           component: () => import('@/views/discover/index.vue'),
